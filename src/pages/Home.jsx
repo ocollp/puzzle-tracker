@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react'
 import { availablePuzzles } from '../data/puzzles'
 import './Home.css'
 
+const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')
+
+function getImageUrl(image) {
+  return image ? baseUrl + (image.startsWith('/') ? image.slice(1) : image) : ''
+}
+
 function getTotalPiecesFromList(list) {
   return list.reduce((total, p) => total + (parseInt(p.pieces) || 0), 0)
 }
@@ -63,7 +69,7 @@ function Home() {
           <div className="stat-icon">🧩</div>
           <div className="stat-info">
             <h2>{puzzles.length}</h2>
-            <p>puzzles completats</p>
+            <p>{puzzles.length === 1 ? 'puzzle acabat' : 'puzzles acabats'}</p>
           </div>
         </div>
         <div className="stat-card">
@@ -109,7 +115,7 @@ function Home() {
               </>
             )}
             <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-              <img src={puzzles[lightboxIndex].image} alt={puzzles[lightboxIndex].title} className="lightbox-image" />
+              <img src={getImageUrl(puzzles[lightboxIndex].image)} alt={puzzles[lightboxIndex].title} className="lightbox-image" />
               <p className="lightbox-caption">{puzzles[lightboxIndex].title}</p>
             </div>
           </div>
@@ -126,20 +132,22 @@ function Home() {
                 aria-label={`Veure ${puzzle.title} en gran`}
               >
                 <img 
-                  src={puzzle.image} 
+                  src={getImageUrl(puzzle.image)} 
                   alt={puzzle.title}
                   className="puzzle-image"
                 />
                 <span className="puzzle-image-hint">Veure en gran</span>
               </div>
               <div className="puzzle-info">
-                <h3 className="puzzle-title">{puzzle.title}</h3>
-                <div className="puzzle-brand-pieces">
-                  {puzzle.brand && <span className="puzzle-brand">{puzzle.brand}</span>}
-                  <span className="puzzle-pieces-inline">{puzzle.pieces} peces</span>
+                <div className="puzzle-title-row">
+                  <h3 className="puzzle-title">{puzzle.title}</h3>
                   {puzzle.price != null && (
-                    <span className="puzzle-price-inline">{puzzle.price}€</span>
+                    <span className="puzzle-price-badge">{puzzle.price}€</span>
                   )}
+                </div>
+                <div className="puzzle-meta">
+                  {puzzle.brand && <span className="puzzle-meta-brand">{puzzle.brand}</span>}
+                  <span className="puzzle-meta-pieces">{puzzle.pieces} peces</span>
                 </div>
                 <div className="puzzle-date-stars">
                   {puzzle.startDate && puzzle.endDate ? (() => {

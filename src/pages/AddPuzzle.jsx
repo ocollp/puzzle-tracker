@@ -3,6 +3,11 @@ import { savePuzzle } from '../utils/storage'
 import { availablePuzzles } from '../data/puzzles'
 import './AddPuzzle.css'
 
+const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')
+function getImageUrl(image) {
+  return image ? baseUrl + (image.startsWith('/') ? image.slice(1) : image) : ''
+}
+
 function AddPuzzle() {
   const navigate = useNavigate()
 
@@ -38,7 +43,7 @@ function AddPuzzle() {
           return (
             <div key={puzzle.id} className="gallery-puzzle-card">
               <div className="gallery-puzzle-image">
-                <img src={puzzle.image} alt={puzzle.title} />
+                <img src={getImageUrl(puzzle.image)} alt={puzzle.title} />
               </div>
               <div className="gallery-puzzle-info">
                 <div className="gallery-puzzle-title-row">
