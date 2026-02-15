@@ -31,6 +31,14 @@ function getTotalPriceFromList(list) {
   return list.reduce((total, p) => total + (parseFloat(p.price) || 0), 0)
 }
 
+function formatStatNumber(n) {
+  if (n >= 1000) {
+    const k = n / 1000
+    return k % 1 === 0 ? `${k}k` : `${k.toFixed(1).replace('.', ',')}k`
+  }
+  return n.toLocaleString()
+}
+
 function Home() {
   const puzzles = [...availablePuzzles].sort((a, b) => {
     const dateA = a.endDate ? new Date(a.endDate) : new Date(0)
@@ -75,7 +83,7 @@ function Home() {
         <div className="stat-card">
           <div className="stat-icon">🔢</div>
           <div className="stat-info">
-            <h2>{totalPieces.toLocaleString()}</h2>
+            <h2>{formatStatNumber(totalPieces)}</h2>
             <p>total de peces</p>
           </div>
         </div>
@@ -149,7 +157,21 @@ function Home() {
                   {puzzle.brand && <span className="puzzle-meta-brand">{puzzle.brand}</span>}
                   <span className="puzzle-meta-pieces">{puzzle.pieces} peces</span>
                 </div>
-                <div className="puzzle-date-stars">
+                <div className="puzzle-stars" aria-label={`${puzzle.rating} de 5 estrelles`}>
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <span
+                      key={starIndex}
+                      className={
+                        starIndex < (puzzle.rating || 0)
+                          ? 'star star-filled'
+                          : 'star'
+                      }
+                    >
+                      {starIndex < (puzzle.rating || 0) ? '⭐' : '☆'}
+                    </span>
+                  ))}
+                </div>
+                <div className="puzzle-date-row">
                   {puzzle.startDate && puzzle.endDate ? (() => {
                     const start = new Date(puzzle.startDate)
                     const end = new Date(puzzle.endDate)
@@ -170,20 +192,6 @@ function Home() {
                       })}
                     </span>
                   )}
-                  <div className="stars-display" aria-label={`${puzzle.rating} de 5 estrelles`}>
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <span
-                        key={starIndex}
-                        className={
-                          starIndex < (puzzle.rating || 0)
-                            ? 'star star-filled'
-                            : 'star'
-                        }
-                      >
-                        {starIndex < (puzzle.rating || 0) ? '⭐' : '☆'}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
