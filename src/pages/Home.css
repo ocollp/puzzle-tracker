@@ -296,53 +296,31 @@
 }
 
 .puzzle-info {
-  padding: 1.25rem 1.5rem;
+  padding: 1.125rem 1.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.puzzle-title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
-  min-width: 0;
+  gap: 0.5rem;
 }
 
 .puzzle-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 0 0.125rem 0;
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  letter-spacing: -0.01em;
-  flex: 1;
-  min-width: 0;
-}
-
-.puzzle-price-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #059669;
-  background: rgba(5, 150, 105, 0.15);
-  flex-shrink: 0;
+  letter-spacing: -0.02em;
 }
 
 .puzzle-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.75rem;
-  font-size: 0.9375rem;
+  gap: 0.35rem 0.6rem;
+  font-size: 0.8125rem;
 }
 
 .puzzle-meta-brand {
@@ -353,27 +331,47 @@
 .puzzle-meta-pieces {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.5rem;
+  padding: 0.18rem 0.45rem;
   background: var(--background);
   color: var(--text-secondary);
   font-weight: 500;
+  border-radius: 4px;
+}
+
+.puzzle-meta-price {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #059669;
+  background: rgba(5, 150, 105, 0.12);
+  border-radius: 4px;
+}
+
+.puzzle-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .puzzle-stars {
   display: flex;
   align-items: center;
-  gap: 0.2rem;
-  font-size: 1.1rem;
+  gap: 0.15rem;
+  font-size: 1rem;
   line-height: 1;
 }
 
-.puzzle-date-row {
-  min-height: 1.5rem;
-}
-
-.puzzle-date-row .puzzle-date {
-  display: block;
-  min-width: 0;
+.puzzle-footer-dates {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
 }
 
 .stars-display {

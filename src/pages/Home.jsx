@@ -165,31 +165,29 @@ function Home({ galleryColumns = 2 }) {
                 <span className="puzzle-image-hint">Veure en gran</span>
               </div>
               <div className="puzzle-info">
-                <div className="puzzle-title-row">
-                  <h3 className="puzzle-title">{puzzle.title}</h3>
-                  {puzzle.price != null && (
-                    <span className="puzzle-price-badge">{puzzle.price}€</span>
-                  )}
-                </div>
+                <h3 className="puzzle-title">{puzzle.title}</h3>
                 <div className="puzzle-meta">
                   {puzzle.brand && <span className="puzzle-meta-brand">{puzzle.brand}</span>}
                   <span className="puzzle-meta-pieces">{puzzle.pieces} peces</span>
+                  {puzzle.price != null && (
+                    <span className="puzzle-meta-price">{puzzle.price}€</span>
+                  )}
                 </div>
-                <div className="puzzle-stars" aria-label={`${puzzle.rating} de 5 estrelles`}>
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <span
-                      key={starIndex}
-                      className={
-                        starIndex < (puzzle.rating || 0)
-                          ? 'star star-filled'
-                          : 'star'
-                      }
-                    >
-                      {starIndex < (puzzle.rating || 0) ? '⭐' : '☆'}
-                    </span>
-                  ))}
-                </div>
-                <div className="puzzle-date-row">
+                <div className="puzzle-footer">
+                  <div className="puzzle-stars" aria-label={`${puzzle.rating} de 5 estrelles`}>
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <span
+                        key={starIndex}
+                        className={
+                          starIndex < (puzzle.rating || 0)
+                            ? 'star star-filled'
+                            : 'star'
+                        }
+                      >
+                        {starIndex < (puzzle.rating || 0) ? '⭐' : '☆'}
+                      </span>
+                    ))}
+                  </div>
                   {puzzle.startDate && puzzle.endDate ? (() => {
                     const start = new Date(puzzle.startDate)
                     const end = new Date(puzzle.endDate)
@@ -197,19 +195,19 @@ function Home({ galleryColumns = 2 }) {
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1
                     const fmt = (d) => `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getFullYear()).slice(-2)}`
                     return (
-                      <span className="puzzle-date">
-                        {diffDays === 1 ? '1 dia' : `${diffDays} dies`} ({fmt(start)} - {fmt(end)})
+                      <span className="puzzle-footer-dates">
+                        {diffDays === 1 ? '1 dia' : `${diffDays} dies`} · {fmt(start)}–{fmt(end)}
                       </span>
                     )
-                  })() : (
-                    <span className="puzzle-date">
+                  })(                  ) : puzzle.date ? (
+                    <span className="puzzle-footer-dates">
                       {new Date(puzzle.date).toLocaleDateString('ca-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
                       })}
                     </span>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
