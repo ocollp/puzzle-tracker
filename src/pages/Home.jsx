@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { availablePuzzles } from '../data/puzzles'
 import './Home.css'
 
@@ -49,6 +49,7 @@ function Home({ galleryColumns = 2 }) {
   const daysTracking = getDaysTrackingFromList(puzzles)
   const totalPrice = getTotalPriceFromList(puzzles)
   const [lightboxIndex, setLightboxIndex] = useState(null)
+  const touchStartX = useRef(0)
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -69,6 +70,18 @@ function Home({ galleryColumns = 2 }) {
   const closeLightbox = () => setLightboxIndex(null)
   const goPrev = () => setLightboxIndex((i) => (i <= 0 ? puzzles.length - 1 : i - 1))
   const goNext = () => setLightboxIndex((i) => (i >= puzzles.length - 1 ? 0 : i + 1))
+
+  const SWIPE_THRESHOLD = 50
+  const handleLightboxTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const handleLightboxTouchEnd = (e) => {
+    if (puzzles.length <= 1) return
+    const endX = e.changedTouches[0].clientX
+    const diff = touchStartX.current - endX
+    if (diff > SWIPE_THRESHOLD) goNext()
+    else if (diff < -SWIPE_THRESHOLD) goPrev()
+  }
 
   return (
     <div className="home">
@@ -122,7 +135,12 @@ function Home({ galleryColumns = 2 }) {
                 <button type="button" className="lightbox-arrow lightbox-next" onClick={(e) => { e.stopPropagation(); goNext() }} aria-label="Següent">›</button>
               </>
             )}
-            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="lightbox-content"
+              onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleLightboxTouchStart}
+              onTouchEnd={handleLightboxTouchEnd}
+            >
               <img src={getImageUrl(puzzles[lightboxIndex].image)} alt={puzzles[lightboxIndex].title} className="lightbox-image" />
               <p className="lightbox-caption">{puzzles[lightboxIndex].title}</p>
             </div>

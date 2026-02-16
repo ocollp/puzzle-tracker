@@ -41,7 +41,7 @@ function GalleryViewIcons({ columns, setColumns }) {
         <button
           key={value}
           type="button"
-          className={`gallery-view-btn ${columns === value ? 'active' : ''}`}
+          className={`gallery-view-btn ${columns === value ? 'active' : ''}${value === 4 ? ' gallery-view-btn--desktop-only' : ''}`}
           onClick={() => {
             setColumns(value)
             try { localStorage.setItem(GALLERY_STORAGE_KEY, String(value)) } catch (_) {}
@@ -82,7 +82,6 @@ function App() {
               🧩 <span className="nav-logo-text">Puzzle Tracker</span>
             </Link>
             <div className="nav-links">
-              <Link to="/" className="nav-link" onClick={() => window.scrollTo(0, 0)}>inici</Link>
               <GalleryViewIcons columns={galleryColumns} setColumns={setGalleryColumns} />
             </div>
           </div>

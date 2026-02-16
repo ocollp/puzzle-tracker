@@ -38,7 +38,8 @@
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .nav-link {
@@ -72,9 +73,6 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  margin-left: 0.5rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid var(--border-color);
 }
 
 .gallery-view-btn {
@@ -145,6 +143,10 @@
     flex-direction: row;
     gap: 0;
     justify-content: space-between;
+  }
+
+  .gallery-view-btn--desktop-only {
+    display: none;
   }
 
   .nav-logo {
