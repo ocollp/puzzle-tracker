@@ -168,7 +168,6 @@ function Home({ galleryColumns = 2 }) {
                 <h3 className="puzzle-title">{puzzle.title}</h3>
                 <div className="puzzle-meta">
                   {puzzle.brand && <span className="puzzle-meta-brand">{puzzle.brand}</span>}
-                  <span className="puzzle-meta-pieces">{puzzle.pieces} peces</span>
                   {puzzle.price != null && (
                     <span className="puzzle-meta-price">{puzzle.price}€</span>
                   )}

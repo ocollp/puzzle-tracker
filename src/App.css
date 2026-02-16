@@ -23,7 +23,7 @@
 }
 
 .nav-logo {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #ffffff;
   text-decoration: none;
@@ -83,23 +83,23 @@
   height: 36px;
   padding: 0;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 10px;
   background: var(--background);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .gallery-view-btn:hover {
   background: var(--surface);
   color: var(--text-primary);
-  border-color: var(--primary-color);
+  border-color: var(--border-color);
 }
 
 .gallery-view-btn.active {
-  background: var(--primary-color);
+  background: rgba(79, 70, 229, 0.5);
   color: #fff;
-  border-color: var(--primary-color);
+  border-color: rgba(99, 102, 241, 0.55);
 }
 
 .theme-toggle {
@@ -150,8 +150,7 @@
   }
 
   .nav-logo {
-    font-size: 1rem;
-    gap: 0.35rem;
+    font-size: 1.15rem;
   }
 
   .nav-links {
