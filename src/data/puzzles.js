@@ -18,6 +18,7 @@ export const availablePuzzles = [
     rating: 3,
     price: 25,
     image: '/puzzles/anticipation.jpg',
+    imagePosition: 'top',
     startDate: '2025-05-19',
     endDate: '2025-05-28',
   },

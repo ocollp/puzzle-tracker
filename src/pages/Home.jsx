@@ -39,7 +39,7 @@ function formatStatNumber(n) {
   return n.toLocaleString()
 }
 
-function Home() {
+function Home({ galleryColumns = 2 }) {
   const puzzles = [...availablePuzzles].sort((a, b) => {
     const dateA = a.endDate ? new Date(a.endDate) : new Date(0)
     const dateB = b.endDate ? new Date(b.endDate) : new Date(0)
@@ -128,11 +128,11 @@ function Home() {
             </div>
           </div>
         )}
-        <div className="puzzles-grid">
+        <div className={`puzzles-grid columns-${galleryColumns}`}>
           {puzzles.map((puzzle, index) => (
             <div key={puzzle.id} className="puzzle-card">
               <div
-                className="puzzle-image-container puzzle-image-clickable"
+                className={`puzzle-image-container puzzle-image-clickable${puzzle.imagePosition === 'top' ? ' puzzle-image--top' : ''}`}
                 onClick={() => openLightbox(index)}
                 role="button"
                 tabIndex={0}
