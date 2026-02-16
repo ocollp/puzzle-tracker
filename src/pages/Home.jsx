@@ -97,7 +97,7 @@ function Home({ galleryColumns = 2 }) {
           <div className="stat-icon">🔢</div>
           <div className="stat-info">
             <h2>{formatStatNumber(totalPieces)}</h2>
-            <p>total de peces</p>
+            <p>peces en total</p>
           </div>
         </div>
         <div className="stat-card">
