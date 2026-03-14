@@ -121,4 +121,15 @@ export const availablePuzzles = [
     startDate: '2026-01-05',
     endDate: '2026-01-23',
   },
+  {
+    id: 'puzzle-12',
+    title: 'Map',
+    brand: 'Jigsaw Puzzle',
+    pieces: 1000,
+    rating: 5,
+    price: 9,
+    image: '/puzzles/map.png',
+    startDate: '2026-01-23',
+    endDate: '2026-03-08',
+  },
 ]
