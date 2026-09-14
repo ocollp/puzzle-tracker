@@ -16,7 +16,7 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:5173/puzzle-tracker/** in your browser.
+Open **http://localhost:5173/puzzles/** in your browser.
 
 ## Build
 
