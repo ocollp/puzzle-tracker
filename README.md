@@ -9,7 +9,7 @@ npm install        # només la primera vegada
 npm run dev
 ```
 
-Obre [http://localhost:5173/puzzles/](http://localhost:5173/puzzles/) al navegador.
+Obre [http://localhost:5173/puzzle-tracker/](http://localhost:5173/puzzle-tracker/) al navegador.
 
 ## Afegir o editar puzzles
 
@@ -22,4 +22,4 @@ npm run build
 npm run preview
 ```
 
-La pàgina es publica sota la ruta `/puzzles/`.
+La pàgina es publica sota la ruta `/puzzle-tracker/`.
