@@ -1,6 +1,6 @@
 # Puzzles
 
-La nostra col·lecció personal de puzzles acabats: fotos, valoracions i el record de cada estona compartida.
+Puzzles acabats, fotos i valoracions.
 
 ## Posar-lo en marxa
 
